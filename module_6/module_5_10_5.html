@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Модуль 5, задание 5.10.5</title>
+</head>
+
+<body>
+
+<script>
+
+    // Задание 5.10.5
+    // Напишите программу, которая будет сообщать пользователю, на какую сумму он может взять кредит. Сумма кредита зависит от возраста пользователя.
+    //
+    // Например:
+    //
+    // Если клиенту нет 18 лет, то кредит он не получит.
+    // Если клиенту от 18 до 21, то он может получить максимум 50000.
+    // Если клиенту от 22 до 35, то он сможет получить максимум 400000.
+    // Если клиенту от 36 до 65, то ему одобрят максимум 1000000.
+    // Клиент может получить только сумму, кратную 1000.
+    //
+    // В программе должна присутствовать проверка на вводимое пользователем значение.
+    // Допускаются только значения типа number.
+
+
+    let isValid = false;
+    while(!isValid) {
+        let ageInput;
+        while (true) {
+            ageInput = prompt("Введите, пожалуйста, Ваш возраст:")
+            if (ageInput === null) {
+                alert("Видимо Вам кредит не нужен. Всего доброго!");
+                isValid(true);
+                break;
+            }
+            ageInput = ageInput.trim();
+            if (ageInput === "" || isNaN(ageInput)) {
+                alert("Возраст должен быть числом!");
+                continue;
+            }
+            break;
+        }
+        if (isValid) break;
+        const age = Number(ageInput);
+        if (age < 18) {
+            alert("Мы не можем выдать Вам кредит, так как Вы не достигли 18 лет.")
+            isValid = true;
+            // continue;
+            break;
+        }
+        if (age >= 66) {
+            alert("К сожалению, по политике Компании мы не можем выдать Вам кредит. Спасибо за обращение!");
+            isValid = true;
+            continue;
+        }
+        let maxCredit;
+        if (age < 22) {
+            maxCredit = 50000;
+        } else if (age < 36) {
+            maxCredit = 400000;
+        } else {
+            maxCredit = 1000000;
+        }
+        let sumInput;
+        while (true) {
+            sumInput = prompt("Введите желаемую сумму кредита (в рублях, без указания единицы измерения)");
+            if (sumInput === null) {
+                alert("Видимо Вам кредит не нужен. Всего доброго!");
+                isValid = true;
+                break;
+            }
+            sumInput = sumInput.trim();
+            if (sumInput === "" || isNaN(sumInput)) {
+                alert("Сумма кредита должна быть целым числом.");
+                continue;
+            }
+            break;
+        }
+        if (isValid) break;
+        let sumRequired = Math.round(Number(sumInput));
+        if (sumRequired > maxCredit) {
+            let confirmation = confirm(`Мы можем выдать Вам максимум ${maxCredit}.`);
+            if (confirmation) {
+                sumRequired = maxCredit;
+                alert("Спасибо за обращение! Для оформления кредита Вам необходимо обратиться в ближайшее отделение Банка.");
+            } else {
+                alert("Видимо Вам кредит не нужен. Всего доброго!");
+            }
+            isValid = true;
+        } else {
+            if (sumRequired % 1000 !== 0) {
+                let roundedCredit = Math.floor(sumRequired / 1000) * 1000;
+                let confirmation = confirm(`Вы ввели сумму, не кратную 1000. Мы можем выдать Вам ${roundedCredit} рублей.`);
+                if (confirmation) {
+                    alert("Спасибо за обращение! Для оформления кредита Вам необходимо обратиться в ближайшее отделение Банка.");
+                } else {
+                    alert("Видимо Вам кредит не нужен. Всего доброго!");
+                }
+                isValid = true;
+            } else {
+                let confirmation = confirm(`Мы можем выдать Вам ${sumRequired} рублей.`);
+                if (confirmation) {
+                    alert("Спасибо за обращение! Для оформления кредита Вам необходимо обратиться в ближайшее отделение Банка.");
+                } else {
+                    alert("Видимо Вам кредит не нужен. Всего доброго!");
+                }
+                isValid = true;
+            }
+        }
+    }
+
+</script>
+</body>
+
+</html>
+
+

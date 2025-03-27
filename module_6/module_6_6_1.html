@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Модуль 6, задание 6.6.1</title>
+</head>
+
+<body>
+
+<script>
+
+  // Задание 6.6.1
+  // Напишите проверку, которая позволит определить, является слово палиндромом или нет.
+  // Если является, то выведите в консоль фразу «Слово <слово> является палиндромом». Если нет — «Слово <слово> не является палиндромом».
+  // РЕШЕНИЕ 6.6.1:
+
+  const userInput = prompt("Введите слово/предложение для проверки на палиндром:");
+  if (userInput !== null && userInput !== "") {
+      const lowerCaseWord = userInput.toLowerCase().replace(/\s/g, '');
+      let reversedWord = "";
+      for (let i = lowerCaseWord.length-1; i>=0; i-=1) {
+          reversedWord += lowerCaseWord[i];
+      }
+      if (lowerCaseWord === reversedWord) {
+          alert(`"${userInput}" - палиндром`);
+      } else {
+          alert(`"${userInput}" - НЕ палиндром`);
+      }
+  } else {
+      alert("Вы ничего не ввели или отменили ввод");
+  }
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Модуль 5, задание 5.10.4</title>
+</head>
+
+<body>
+
+<script>
+
+  // Задание 5.10.4
+  // Перепишите задание 5.10.3.
+  //
+  // Определите остаток от деления количества лет на 10.
+  // В зависимости от этого выведите в алерт «Антон: 21 год» или «Антон: 24 года», или «Антон: 25 лет» и т.д.
+  // То есть для всех чисел с остатком 1 должно быть «_год», для чисел с остатком 2, 3, 4 – «_года», а для всех остальных – «_лет».
+  // Вы можете использовать для этого условные конструкции if-else или switch-case.
+  //
+  // Входные данные: Игорь и 2000.
+  //
+  // Выходные данные: Игорь: 23 года
+
+  let isValid = false;
+  while(!isValid) {
+    let userName;
+    while (true) {
+      userName = prompt("Введите Ваше имя");
+      if (userName.trim() !== "") {
+        break;
+      }
+      alert("Имя не может быть пустым.");
+    }
+    let yearOfBirth;
+    while (true) {
+      const userYearOfBirth = prompt("Напишите год Вашего рождения (в формате ГГГГ):");
+      yearOfBirth = Number(userYearOfBirth);
+      if (!isNaN(yearOfBirth) && yearOfBirth >= 1000 && yearOfBirth <= 9999) break;
+      alert("Год рождения должен быть четырёхзначным числом.");
+    }
+    const userAge = 2025 - yearOfBirth;
+      if (userAge % 10 === 1) {
+        alert(`${userName}: ${userAge} год`);
+      } else if (userAge % 10 === 2 || userAge % 10 === 3 || userAge % 10 === 4) {
+        alert(`${userName}: ${userAge} года`);
+      } else {
+        alert(`${userName}: ${userAge} лет`);
+      }
+    isValid = true;
+  }
+
+</script>
+</body>
+
+</html>
